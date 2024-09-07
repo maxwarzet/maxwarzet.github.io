@@ -1,71 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>File Uploader</title>
-<style>
-  .uploader {
-    border: 2px solid #f3f3f3;
-    border-radius: 5px;
-    padding: 20px;
-    width: 300px;
-    margin: auto;
-    text-align: center;
-  }
-  .uploader input[type="file"] {
-    width: 90%;
-    margin: 10px 0;
-  }
-  .uploader button {
-    padding: 10px 20px;
-    border: none;
-    background-color: #5cb85c;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  .uploader button:hover {
-    background-color: #4cae4c;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Clone</title>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
+    <div id="chat-container">
+        <div id="messages"></div>
+        <input type="text" id="username" placeholder="Your Name">
+        <input type="text" id="message" placeholder="Type a message">
+        <input type="file" id="file">
+        <button onclick="sendMessage()">Send</button>
+    </div>
 
-<div class="uploader">
-  <input type="file" id="fileInput" multiple>
-  <button onclick="uploadFiles()">Upload</button>
-</div>
-
-<script>
-  function uploadFiles() {
-    var files = document.getElementById('fileInput').files;
-    if (files.length === 0) {
-      alert('Please select a file!');
-      return;
-    }
-    var formData = new FormData();
-    for (var i = 0; i < files.length; i++) {
-      var file = files[i];
-      formData.append('files[]', file, file.name);
-    }
-    // TODO: Replace with your server upload URL
-    var uploadURL = 'https://maxwarzet.github.io/index.html';
-    fetch(uploadURL, {
-      method: 'POST',
-      body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      alert('Files uploaded successfully!');
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert('Upload failed.');
-    });
-  }
-</script>
-
+    <script src="/static/js/main.js"></script>
 </body>
 </html>
